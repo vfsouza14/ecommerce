@@ -109,7 +109,7 @@ $app->get("/admin/users/:iduser", function($iduser){
 
 	$page->setTpl("users-update", array(
 
-		"user"=>$user->getValues()
+		"user"=>$user->getValue()
 
 	));
 
@@ -289,7 +289,9 @@ $app->get("/admin/categories/:idcategory/delete", function($idcategory){
 
 });
 
-$app->get("/admin/categories/:idcategory/", function($idcategory){
+
+
+$app->get("/admin/categories/:idcategory", function($idcategory){
 
 	User::verifyLogin();
 
@@ -301,13 +303,13 @@ $app->get("/admin/categories/:idcategory/", function($idcategory){
 
 	$page->setTpl("categories-update", [
 
-		'category'=>$category->getValues()
+		'category'=>$category->getValue()
 
 	]);
 
 });
 
-$app->post("/admin/categories/:idcategory/", function($idcategory){
+$app->post("/admin/categories/:idcategory", function($idcategory){
 
 	User::verifyLogin();
 
@@ -321,6 +323,23 @@ $app->post("/admin/categories/:idcategory/", function($idcategory){
 
 	header('Location: /admin/categories');
 	exit;
+
+});
+
+$app->get("/categories/:idcategory", function($idcategory){
+
+	$category = new Category();
+	
+	$category->get((int)$idcategory);
+
+	$page = new Page();
+
+	$page->setTpl("category", [
+
+		'category'=>$category->getValue(),
+		'products'=>[]
+
+	]);
 
 });
 

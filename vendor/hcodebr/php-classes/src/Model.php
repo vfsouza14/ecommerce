@@ -4,7 +4,7 @@
 
 	class Model{
 
-		private $values = [];
+		private $value = [];
 
 		public function __call($name, $args){
 
@@ -14,11 +14,11 @@
 			switch($method){
 
 				case "get":
-					return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;
+					return (isset($this->value[$fieldName])) ? $this->value[$fieldName] : NULL;
 				break;
 
 				case "set":
-					$this->values[$fieldName] = $args[0];
+					$this->value[$fieldName] = $args[0];
 				break;
 
 			}
@@ -26,16 +26,16 @@
 
 		public function setData($data = array()){
 
-			foreach ($data as $key => $values) {
+			foreach ($data as $key => $value) {
 				
-					$this->{"set".$key}($values);
+					$this->{"set".$key}($value);
 			}
 
 		}
 
-		public function getValues(){
+		public function getValue(){
 
-			return $this->values;
+			return $this->value;
 
 		}
 
