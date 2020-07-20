@@ -14,11 +14,11 @@
 			switch($method){
 
 				case "get":
-					return (isset($this->value[$fieldName])) ? $this->value[$fieldName] : NULL;
+					return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;
 				break;
 
 				case "set":
-					$this->value[$fieldName] = $args[0];
+					$this->values[$fieldName] = $args[0];
 				break;
 
 			}
@@ -26,16 +26,16 @@
 
 		public function setData($data = array()){
 
-			foreach ($data as $key => $value) {
+			foreach ($data as $key => $values) {
 				
-					$this->{"set".$key}($value);
+					$this->{"set".$key}($values);
 			}
 
 		}
 
-		public function getValue(){
+		public function getValues(){
 
-			return $this->value;
+			return $this->values;
 
 		}
 

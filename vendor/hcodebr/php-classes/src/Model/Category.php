@@ -39,7 +39,7 @@ class Category extends Model{
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory)", array(
+		$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", array(
 
 				":idcategory"=>$idcategory
 
@@ -48,10 +48,11 @@ class Category extends Model{
 		//var_dump($results);
 		//die;
 
-		$mysql = mysql_query("SELECT * FROM tb_categories WHERE idcategory = :idcategory");
-		echo "<pre>";
-		json_encode(var_dump($mysql)) ;
-		die;
+		//$mysql = mysql_query("SELECT * FROM tb_categories WHERE idcategory = :idcategory");
+		//echo "<pre>";
+
+		//var_dump($mysql) ;
+		//die;
 
 		$this->setData($results[0]);
 
@@ -62,7 +63,7 @@ class Category extends Model{
 
 		$sql = new Sql();
 
-		$sql->query("DELETE FROM tb_categories WHERE idcategory = :idcategory)", array( 
+		$sql->query("DELETE FROM tb_categories WHERE idcategory = :idcategory", array( 
 
 			":idcategory"=>$this->getidcategory()
 

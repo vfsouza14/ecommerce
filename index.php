@@ -109,7 +109,7 @@ $app->get("/admin/users/:iduser", function($iduser){
 
 	$page->setTpl("users-update", array(
 
-		"user"=>$user->getValue()
+		"user"=>$user->getValues()
 
 	));
 
@@ -303,7 +303,7 @@ $app->get("/admin/categories/:idcategory", function($idcategory){
 
 	$page->setTpl("categories-update", [
 
-		'category'=>$category->getValue()
+		'category'=>$category->getValues()
 
 	]);
 
@@ -336,7 +336,7 @@ $app->get("/categories/:idcategory", function($idcategory){
 
 	$page->setTpl("category", [
 
-		'category'=>$category->getValue(),
+		'category'=>$category->getValues(),
 		'products'=>[]
 
 	]);
