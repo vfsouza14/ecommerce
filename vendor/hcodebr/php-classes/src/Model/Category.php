@@ -122,7 +122,7 @@ class Category extends Model{
 	}
 
 	// paginação
-	public function getProductsPage($page = 1, $itemsPerPage = 8){ 
+	public function getProductsPage($page = 1, $itemsPerPage = 3){ 
 
 		/*quantidade de itens por pagina*/ $start = ($page-1) * $itemsPerPage;
 
