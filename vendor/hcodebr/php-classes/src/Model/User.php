@@ -12,6 +12,49 @@ class User extends Model{
 	const SECRET = "HcodePhp7_Secret";
 	const SECRET_IV = "HcodePhp7_Secret_IV";
 
+	public static function getFromSession(){
+
+		$user = new User();
+
+		if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0){
+
+			$user->setData($_SESSION[User::SESSION]);
+
+		}
+
+		return $user;
+
+	}
+
+	public static function checkLogin($inadmin = true){
+
+		if(!isset($_SESSION[User::SESSION]) || // se a sessão  não ta definida, não ta logad
+			!$_SESSION[User::SESSION] || // se ta definida mas ta vazia
+			!(int)$_SESSION[User::SESSION]["iduser"]> 0 // se ta definida mas não é > 0
+		){
+			//não está logado
+			return false;
+
+		} else {
+			//se for uma rota da administração e o usuario for um usuario da administração
+			if($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) { 
+
+				return true;
+
+			} else if($inadmin === false){ // se não for administração mas ta logando no site na parte de cliente, permanece logado
+
+				return true;
+
+			} else {
+
+				return false;
+
+			}
+
+		}
+
+	}
+
 	public static function login($login, $password){
 
 		$sql = new Sql();
@@ -51,7 +94,7 @@ class User extends Model{
 
 	public static function verifyLogin($inadmin = true){
 
-		if(!isset($_SESSION[User::SESSION]) || !$_SESSION[User::SESSION] || !(int)$_SESSION[User::SESSION]["iduser"]>0 || (bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin){
+		if(User::checkLogin($inadmin)){
 
 			header("Location: /admin/login");
 			exit;
