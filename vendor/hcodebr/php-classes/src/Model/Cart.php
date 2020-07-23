@@ -63,7 +63,7 @@ class Cart extends Model{
 		$sql = new Sql();
 
 		$results = $sql->select("SELECT * FROM tb_carts WHERE dessessionid = :dessessionid", [
-			':dessessionid'=>$this->session_id() //pega o id da sessão
+			':dessessionid'=>session_id() //pega o id da sessão
 
 		]);
 
@@ -100,9 +100,9 @@ class Cart extends Model{
 
 				':idcart'=>$this->getidcart(),
 				':dessessionid'=>$this->getdessessionid(),
-				':iduser'=>$this->getidusert(),
+				':iduser'=>$this->getiduser(),
 				':deszipcode'=>$this->getdeszipcode(),
-				':vlfreight'=>$this->getlfreight(),
+				':vlfreight'=>$this->getvlfreight(),
 				':nrdays'=>$this->getnrdays()
 
 		]);
