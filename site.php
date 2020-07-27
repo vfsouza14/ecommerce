@@ -72,9 +72,69 @@ $app->get("/categories/:idcategory", function($idcategory){
 
 		$page = new Page();
 
-		$page->setTpl("cart");
+		$page->setTpl("cart", [
 
-	})
+			'cart'=>$cart->getValues(),
+			'products'=>$cart->getProducts()
+		]);
+
+	});
+
+	$app->get("/cart/:idproduct/add", function($idproduct){
+
+		$products = new Products();
+
+		$products->get((int)$idproduct);
+
+		$cart = Cart::getFromSession();
+
+		$qtd = (isset($_GET['qtd'])) ? (int)$_GET['qtd'] : 1;
+
+		for ($i = 0; $i < $qtd; $i++){
+
+			$cart->addProduct($products);
+		}
+
+
+		header("Location: /cart");
+		exit;
+
+	});
+
+	//template para remoção de quantidade
+	$app->get("/cart/:idproduct/minus", function($idproduct){
+
+		$products = new Products();
+
+		$products->get((int)$idproduct);
+
+		$cart = Cart::getFromSession();
+
+		$cart->removeProduct($products);
+
+		header("Location: /cart");
+		exit;
+
+	});
+
+
+	//template de remoção total
+	$app->get("/cart/:idproduct/remove", function($idproduct){
+
+		$products = new Products();
+
+		$products->get((int)$idproduct);
+
+		$cart = Cart::getFromSession();
+
+		$cart->removeProduct($products, true);
+
+		header("Location: /cart");
+		exit;
+
+	});
+
+
 
 
 ?>
