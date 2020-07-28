@@ -4,7 +4,7 @@
 
 	class Model{
 
-		private $value = [];
+		private $values = [];
 
 		public function __call($name, $args){
 

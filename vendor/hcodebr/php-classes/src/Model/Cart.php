@@ -108,6 +108,7 @@ class Cart extends Model{
 
 		]);
 
+
 		$this->setData($results[0]);
 
 	}
