@@ -41,6 +41,18 @@ $app->get('/admin/logout', function(){
 	exit;
 });
 
+$app->get("/admin/forgot", function(){
+
+	$page = new PageAdmin([
+
+		"header"=>false,
+		"footer" => false
+
+	]);
+	$page->setTpl("forgot");
+
+});
+
 $app->post("/admin/forgot", function(){
 
 
