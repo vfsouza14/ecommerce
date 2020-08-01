@@ -67,6 +67,8 @@ $app->post("/admin/users/create", function(){
 
 	$_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
 
+	$_POST['despassword'] = User::getPasswordHash($_POST['despassword']);
+
 	$user->setData($_POST);
 
 	$user->save();
