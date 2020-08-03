@@ -249,11 +249,12 @@ class Cart extends Model{
 
 			return $results;
 
+
 		}else{
 
 
 
-		}		
+		}	
 
 	}
 
@@ -264,7 +265,7 @@ class Cart extends Model{
 
 	}
 
-	public static function setMsgError(){
+	public static function setMsgError($msg){
 
 			$_SESSION[Cart::SESSION_ERROR] = $msg;
 
@@ -309,7 +310,7 @@ class Cart extends Model{
 		$totals = $this->getProductsTotals();
 
 		$this->setvlsubtotal((float)$totals['vlprice']);
-		$this->setvltotal((float)$totals['vlprice'] + $this->getvlfreight());
+		$this->setvltotal((float)$totals['vlprice'] + (float)$this->getvlfreight());
 
 	}
 
