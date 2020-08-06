@@ -359,6 +359,28 @@ class User extends Model{
 
 	}
 
+	public static function setSuccess($msg){
+
+			$_SESSION[User::SUCCESS] = $msg;
+
+	}
+
+	public static function getSuccess(){
+
+			$msg =  (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? 
+			$_SESSION[User::SUCCESS] : "";
+
+			User::clearSuccess();
+			return $msg;
+
+	}
+
+	public static function clearSuccess(){
+
+			$_SESSION[User::SUCCESS] = NULL;
+
+	}
+
 	public static function setErrorRegister($msg){
 
 		$_SESSION[User:: ERROR_REGISTER] = $msg;
@@ -409,27 +431,7 @@ class User extends Model{
 
 	}
 
-	public static function setSuccess($msg){
-
-			$_SESSION[User::SUCCESS] = $msg;
-
-	}
-
-	public static function getSuccess(){
-
-			$msg =  (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? 
-			$_SESSION[User::SUCCESS] : "";
-
-			User::clearSuccess();
-			return $msg;
-
-	}
-
-	public static function clearSuccess(){
-
-			$_SESSION[User::SUCCESS] = NULL;
-
-	}
+	
 
 	public function getOrders(){
 
